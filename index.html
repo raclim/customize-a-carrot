@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Customize a Carrot</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
+    </head>
+
+    <body class="carrot__body">
+        <header>
+            <div class="carrot__headerHolder">
+                <h1>Customize a Carrot</h1>
+
+                <nav class="carrot__nav">
+                    <a href="about.html" class="carrot__navItem">About</a>
+                    <a href="gallery.html" class="carrot__navItem">Gallery</a>
+                    <a href="#" class="carrot__navItem">Github</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="carrot__holder">
+                <div class="carrot_gameButtonsHolder"> 
+                    <div class="carrot__gameButtons">
+                        <p>Type of Carrot</p>
+                        <button onclick="clickRealisticCarrot()">
+                            Realistic Carrot
+                        </button>
+                        <button onclick="clickRealisticCarrots()">
+                            Realistic Carrots
+                        </button>
+                        <button onclick="clickCartoonCarrot()">
+                            Cartoon Carrot
+                        </button>
+                        <button onclick="clickCheese()">
+                            Cheese
+                        </button>
+                    </div>
+                    <div class="carrot__gameButtons">
+                        <p>Color of Carrot</p>
+                        <button onclick="clickOrangeCarrot()">
+                            Orange
+                        </button>
+                        <button onclick="clickGreenCarrot()">
+                            Green
+                        </button>
+                        <button onclick="clickBlueCarrot()">
+                            Blue
+                        </button>
+                        <button onclick="clickHotPinkCarrot()">
+                            Hot Pink
+                        </button>
+                    </div>
+                    <div class="carrot__gameButtons">
+                        <p>Carrot Companions</p>
+                        <button onclick="addRabbit()">rabbit</button>
+                        <button onclick="addSunflower()">sunflower</button>
+                        <button onclick="addKale()">kale</button>
+                        <button onclick="addDog()">dog</button>
+                        <button onclick="removeAllCompanions()">remove everything</button>
+                    </div>
+
+                    <div class="carrot__gameButtons">
+                        <p>Background Color</p>
+                        <button onclick="clickWhiteBackground()">
+                            white
+                        </button>
+                        <button onclick="clickCloudBackground()">
+                            clouds
+                        </button>
+                        <button onclick="clickSpaceBackground()">
+                            space
+                        </button>
+                        <button onclick="clickAnimeBackground()">
+                            anime
+                        </button>
+                        <button onclick="clickNYCBackground()">
+                            nyc
+                        </button>
+                        <button onclick="clickNoBackground()">
+                            no background
+                        </button>
+                    </div>
+
+                    <div class="carrot__gameButtons">
+                        <p>Text</p>
+                        <input type="text" id="textInput" name="textInput">
+                        <button type="submit" onclick="onAddText()">Submit</button>
+
+                        <button onclick="onRemoveText()">Remove Text</button>
+                    </div>
+
+                    <div class="carrot__gameButtons">
+                        <p>Download</p>
+                        <input id="downloadCarrot" download="download.png" type="button" value="Download Carrot" />
+                    </div>
+                </div>
+
+                <div id="carrotGame">
+                    <p id="textBox"></p>
+                    <img id="carrotImg" src="images/realistic_carrot.png" alt="realistic carrot" width="40%">
+                </div>
+            </div>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+
+  <footer>
+    <p>Rachel Lim 2023</p>
+  </footer>
+</html>

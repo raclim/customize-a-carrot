@@ -1,0 +1,103 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito;
+    background-color: rgb(227, 205, 176);
+    min-height: 100vh;
+    color: darkgreen;
+}
+
+.carrot__headerHolder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carrot__nav {
+    margin: 2rem;
+}
+
+.carrot__navItem {
+    background-color: darkgreen;
+    color: white;
+    padding: 0.7rem;
+    border: 0.1rem solid orange;
+    box-shadow: 8px 8px orange;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.carrot__navItem:hover {
+    color:darkorange;
+    text-decoration: wavy underline;
+} 
+
+.carrot__body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+
+.carrot__gameButtons button {
+    background-color: white;
+    color: green;
+    border: 0.1rem dashed green;
+    border-radius: 0.5rem;
+    font-family: Nunito;
+    font-weight:700;
+    margin: 0.2rem 0;
+}
+
+.carrot__gameButtons button:hover {
+    background-color: green;
+    border: 0.1rem dashed white;
+    color: white;
+}
+
+.carrot__gameButtons p {
+    font-weight:700;
+    font-size: 1.5rem;
+    margin: 1rem 0 0.5rem 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.carrot__holder {
+    display: flex;
+    justify-content: center;
+}
+
+
+#carrotGame {
+    width: 50%;
+    margin: 0 5%;
+}
+
+#carrotImg {
+    margin: 10%;
+}
+
+#rabbitImg {
+    z-index: 1000;
+}
+
+#kaleImg {
+    margin-left: -10%;
+}
+
+/* #textBox {
+    background-color: white;
+    padding: 0.5rem;
+    border: 0.1rem solid green;
+    box-shadow: 8px 8px green;
+    border-radius: 0.5rem;
+    margin: 0 1rem;
+} */
+
