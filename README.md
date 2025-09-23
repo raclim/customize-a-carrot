@@ -1,3 +1,19 @@
-# customize-a-carrot
+# Customize a Carrot 🥕
 
-A website where you can customize a silly carrot. 
+This can be found within [Rachel's website](https://raclim.cool/customize-a-carrot/index.html)!
+
+## Why Was This Created?
+
+This website was created as a simple demo for the [Introduction to Open Source Contribution Workshop](https://raclim.cool/teach/intro-to-open-source/intro.html) at CC Fest 2023, where participants could get familiar with the steps to particpate in a Github project by opening an issue and creating a pull request to this repository. 
+
+## What Does This Do? 
+
+<img width="400" alt="Screenshot depicting a plain carrot on the right, with different customization options on the left." src="https://github.com/user-attachments/assets/64e09254-c372-4b01-84ce-25ba274e7278" />
+
+<img width="400" alt="Screenshot depicting a carrot with a cloudy background, and text on top." src="https://github.com/user-attachments/assets/518b434c-d090-4734-9233-a3bde3e8990b" />
+
+On this site, you can customize an image of a carrot by clicking on the buttons on the lefthand side of the website, which hold different customization options. 
+
+Feel free to download it once you're done, or raise any suggestions or ideas that you feel would be fun to add! 
+
+_**Note**: I do not claim any ownership over the image assets._
