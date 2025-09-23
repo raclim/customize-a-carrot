@@ -4,7 +4,7 @@ This can be found within [Rachel's website](https://raclim.cool/customize-a-carr
 
 ## Why Was This Created?
 
-This website was created as a simple demo for the [Introduction to Open Source Contribution Workshop](https://raclim.cool/teach/intro-to-open-source/intro.html) at CC Fest 2023, where participants could get familiar with the steps to particpate in a Github project by opening an issue and creating a pull request to this repository. 
+This website was created as a simple demo for the [Introduction to Open Source Contribution Workshop](https://raclim.cool/teach/intro-to-open-source/intro.html) in 2023, where participants could get familiar with the steps to particpate in a Github project by opening an issue and creating a pull request to this repository. 
 
 ## What Does This Do? 
 
