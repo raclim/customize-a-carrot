@@ -1,10 +1,10 @@
 # Customize a Carrot 🥕
 
-This can be found within [Rachel's website](https://raclim.cool/customize-a-carrot/index.html)!
+This is the [website for Customize a Carrot](https://raclim.github.io/customize-a-carrot/).
 
 ## Why Was This Created?
 
-This website was created as a simple demo for the [Introduction to Open Source Contribution Workshop](https://raclim.cool/teach/intro-to-open-source/intro.html) in 2023, where participants could get familiar with the steps to particpate in a Github project by opening an issue and creating a pull request to this repository. 
+This website was initially created as a simple demo for the [Introduction to Open Source Contribution Workshop](https://raclim.github.io/teach/intro-to-open-source/intro.html) at CC Fest NYC in 2023, where participants could get familiar with the steps to particpate in a Github project by opening an issue and creating a pull request to this repository. Since then, the website has gone through several iterations!
 
 ## What Does This Do? 
 
@@ -16,4 +16,4 @@ On this site, you can customize an image of a carrot by clicking on the buttons 
 
 Feel free to download it once you're done, or raise any suggestions or ideas that you feel would be fun to add! 
 
-_**Note**: I do not claim any ownership over the image assets._
+_**Note**: I did not create any of the image assets._
