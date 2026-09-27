@@ -1,222 +1,446 @@
-// carrot types
+const canvas = document.getElementById("carrotGame");
+const emptyMessage = document.getElementById("emptyMessage");
+const selectionMessage = document.getElementById("selectionMessage");
+const sizeControl = document.getElementById("sizeControl");
+const sizeValue = document.getElementById("sizeValue");
+const rotateControl = document.getElementById("rotateControl");
+const rotateValue = document.getElementById("rotateValue");
+const textInput = document.getElementById("textInput");
 
-const clickRealisticCarrot = () => {
-    document.getElementById("carrotImg").src = "images/realistic_carrot.png";
+let selectedObject = null;
+let highestZIndex = 1;
+
+function getCanvasObjects() {
+  return canvas.querySelectorAll(".canvas-object, .canvas-text");
 }
 
-const clickRealisticCarrots = () => {
-    document.getElementById("carrotImg").src = "images/realistic_carrots.png";
+function updateEmptyMessage() {
+  const objects = getCanvasObjects();
+
+  emptyMessage.style.display = objects.length === 0 ? "block" : "none";
 }
 
-const clickCartoonCarrot = () => {
-    document.getElementById("carrotImg").src = "images/cartoon_carrot.png";
+function deselectObject() {
+  if (selectedObject) {
+    selectedObject.classList.remove("selected");
+  }
+
+  selectedObject = null;
+  selectionMessage.textContent = "Select an object first.";
 }
 
-const clickCheese = () => {
-    document.getElementById("carrotImg").src = "images/cheese.png";
+function selectObject(element) {
+  if (selectedObject && selectedObject !== element) {
+    selectedObject.classList.remove("selected");
+  }
+
+  selectedObject = element;
+  selectedObject.classList.add("selected");
+  selectionMessage.textContent = "Object selected!";
+
+  updateControls();
 }
 
+// create img object
+function createCanvasObject(src, x = null, y = null) {
+  const img = document.createElement("img");
 
-// carrot colors
+  img.src = src;
+  img.classList.add("canvas-object");
+  img.draggable = false;
+  img.dataset.rotation = "0";
+  img.style.width = "150px";
+  img.style.zIndex = ++highestZIndex;
 
-const clickOrangeCarrot = () => {
-    document.getElementById("carrotImg").style.filter = "none";
+  // default to center of canvas
+  if (x === null) {
+    x = canvas.clientWidth / 2 - 75;
+  }
+
+  if (y === null) {
+    y = canvas.clientHeight / 2 - 75;
+  }
+
+  img.style.left = `${x}px`;
+  img.style.top = `${y}px`;
+
+  canvas.appendChild(img);
+
+  makeDraggable(img);
+  selectObject(img);
+  updateEmptyMessage();
 }
 
-const clickGreenCarrot = () => {
-    document.getElementById("carrotImg").style.filter = "hue-rotate(90deg)";
+function createTextObject(text) {
+  const element = document.createElement("div");
+
+  element.classList.add("canvas-text");
+  element.textContent = text;
+  element.dataset.rotation = "0";
+  element.dataset.fontSize = "24";
+  element.style.fontSize = "24px";
+  element.style.left = `${canvas.clientWidth / 2 - 75}px`;
+  element.style.top = `${canvas.clientHeight / 2 - 30}px`;
+  element.style.zIndex = ++highestZIndex;
+  canvas.appendChild(element);
+
+  makeDraggable(element);
+  selectObject(element);
+  updateEmptyMessage();
 }
 
-const clickBlueCarrot = () => {
-    document.getElementById("carrotImg").style.filter = "hue-rotate(200deg)";
-}
+function makeDraggable(element) {
+  element.addEventListener("pointerdown", function (event) {
+    event.preventDefault();
 
-const clickHotPinkCarrot = () => {
-    document.getElementById("carrotImg").style.filter = "hue-rotate(300deg)";
-}
+    selectObject(element);
+    element.setPointerCapture(event.pointerId);
 
+    const canvasRect = canvas.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const offsetX = event.clientX - elementRect.left;
+    const offsetY = event.clientY - elementRect.top;
 
-// carrot accessories
+    function move(event) {
+      let x = event.clientX - canvasRect.left - offsetX;
+      let y = event.clientY - canvasRect.top - offsetY;
 
-const addRabbit = () => {
-    let existingRabbit = document.getElementById("rabbitImg");
+      // keep most of the object inside the canvas.
+      const maxX = canvas.clientWidth - element.offsetWidth;
+      const maxY = canvas.clientHeight - element.offsetHeight;
 
-    if (!existingRabbit) {
-        let rabbitImg = document.createElement("img");
-        rabbitImg.setAttribute('src', 'images/rabbit.png');
-        rabbitImg.setAttribute('alt', 'rabbit');
-        rabbitImg.setAttribute('width', '10%');
-        rabbitImg.setAttribute('id', 'rabbitImg');
-        document.getElementById("carrotGame").appendChild(rabbitImg);
-    } else {
-        existingRabbit.remove();
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+
+      element.style.left = `${x}px`;
+      element.style.top = `${y}px`;
     }
-}
 
-const addSunflower = () => {
-    let existingSunflower = document.getElementById("sunflowerImg");
+    function stop(event) {
+      element.removeEventListener("pointermove", move);
+      element.removeEventListener("pointerup", stop);
+      element.removeEventListener("pointercancel", stop);
 
-    if (!existingSunflower) {
-        let sunflowerImg = document.createElement("img");
-        sunflowerImg.setAttribute('src', 'images/sunflower.png');
-        sunflowerImg.setAttribute('alt', 'sunflower');
-        sunflowerImg.setAttribute('width', '10%');
-        sunflowerImg.setAttribute('id', 'sunflowerImg');
-        document.getElementById("carrotGame").appendChild(sunflowerImg);
-    } else {
-        existingSunflower.remove();
-    }
-}
-
-const addKale = () => {
-    let existingKale = document.getElementById("kaleImg");
-
-    if (!existingKale) {
-        let kaleImg = document.createElement("img");
-        kaleImg.setAttribute('src', 'images/kale.png');
-        kaleImg.setAttribute('alt', 'kale');
-        kaleImg.setAttribute('width', '10%');
-        kaleImg.setAttribute('id', 'kaleImg');
-        document.getElementById("carrotGame").appendChild(kaleImg);
-    } else {
-        existingKale.remove();
-    }
-}
-
-const addDog = () => {
-    let existingDog = document.getElementById("dogImg");
-
-    if (!existingDog) {
-        let dogImg = document.createElement("img");
-        dogImg.setAttribute('src', 'images/dog.png');
-        dogImg.setAttribute('alt', 'dog');
-        dogImg.setAttribute('width', '10%');
-        dogImg.setAttribute('id', 'dogImg');
-        document.getElementById("carrotGame").appendChild(dogImg);
-    } else {
-        existingDog.remove();
-    }
-}
-
-const removeAllCompanions = () => {
-    let rabbitElement = document.getElementById("rabbitImg");
-    let sunflowerElement = document.getElementById("sunflowerImg");
-    let kaleElement = document.getElementById("kaleImg");
-    let dogElement = document.getElementById("dogImg");
-
-    if (rabbitElement) {
-        document.getElementById("rabbitImg").remove();
+      try {
+        element.releasePointerCapture(event.pointerId);
+      } catch {
+        // pointer might already be released
+      }
     }
 
-    if (sunflowerElement) {
-        document.getElementById("sunflowerImg").remove();
-    }
-
-    if (kaleElement) {
-        document.getElementById("kaleImg").remove();
-    }
-
-    if (dogElement) {
-        document.getElementById("dogImg").remove();
-    }
+    element.addEventListener("pointermove", move);
+    element.addEventListener("pointerup", stop);
+    element.addEventListener("pointercancel", stop);
+  });
 }
 
+const assetButtons = document.querySelectorAll(".asset-button");
 
-// background colors
+assetButtons.forEach((button) => {
+  const img = button.querySelector("img");
 
-const clickCloudBackground = () => {
-    document.getElementById("carrotGame").style.backgroundImage = "url(images/clouds.jpg)";
-}
+  // add by click
+  button.addEventListener("click", function () {
+    createCanvasObject(button.dataset.src);
+  });
 
-const clickSpaceBackground = () => {
-    document.getElementById("carrotGame").style.backgroundImage = "url(images/space.jpg)";
-}
+  // add by drag
+  button.addEventListener("dragstart", function (event) {
+    event.dataTransfer.setData("text/plain", button.dataset.src);
+    event.dataTransfer.effectAllowed = "copy";
+  });
 
-const clickAnimeBackground = () => {
-    document.getElementById("carrotGame").style.backgroundImage = "url(images/anime.jpg)";
-}
-
-const clickNYCBackground = () => {
-    document.getElementById("carrotGame").style.backgroundImage = "url(images/nyc.jpg)";
-}
-
-const clickWhiteBackground = () => {
-    document.getElementById("carrotGame").style.backgroundImage = "none";
-    document.getElementById("carrotGame").style.backgroundColor = "#fff";
-}
-
-const clickNoBackground = () => {
-    document.getElementById("carrotGame").style.backgroundImage = "none";
-    document.getElementById("carrotGame").style.backgroundColor = "rgb(227, 205, 176)";
-}
-
-
-// text
-
-const onAddText = () => {
-    let textValue = document.getElementById("textInput").value;
-    let textElement = document.getElementById("textBox");
-    if (textElement.innerHTML = "" || !textElement.innerHTML) {
-        textElement.style.backgroundColor = "white";
-        textElement.style.padding = "0.5rem";
-        textElement.style.border = "01.rem solid green";
-        textElement.style.boxShadow = "8px 8px green";
-        textElement.style.borderRadius = "0.5rem";
-        textElement.style.margin = "1rem";
-
-        textElement.innerHTML = textValue;
-    } else {
-        textElement.innerHTML = textValue;
-    }
-}
-
-const onRemoveText = () => {
-    let textElement = document.getElementById("textBox");
-
-    textElement.innerHTML = "";
-    textElement.style.backgroundColor = "";
-    textElement.style.padding = "";
-    textElement.style.border = "";
-    textElement.style.boxShadow = "";
-    textElement.style.borderRadius = "";
-    textElement.style.margin = "";
-}
-
-
-// download 
-
-// const onDownloadClick = () => {
-//         let element = $("#carrotGame"); // global variable
-//         let getCanvas; // global variable
-
-//         console.log("element: ", element);
-//         html2canvas(element, {
-//             onrendered: function(canvas) {
-//                 getCanvas = canvas;
-//                 var imageData = getCanvas.toDataURL("image/png");
-//                 var a = document.createElement("a");
-//                 a.href = imageData; //Image Base64 Goes here
-//                 a.download = "Image.png"; //File name Here
-//                 a.click(); //Downloaded file
-//             }
-//         });
-
-// }
-
-$(document).ready(function() {
-    let element = $("#carrotGame"); // global variable
-    let getCanvas; // global variable
-
-    $("#downloadCarrot").on('click', function() {
-        html2canvas(element, {
-            onrendered: function(canvas) {
-                getCanvas = canvas;
-                var imgageData = getCanvas.toDataURL("image/png");
-                var a = document.createElement("a");
-                a.href = imgageData; //Image Base64 Goes here
-                a.download = "Image.png"; //File name Here
-                a.click(); //Downloaded file
-            }
-        });
-    });
+  img.addEventListener("dragstart", function (event) {
+    event.dataTransfer.setData("text/plain", button.dataset.src);
+    event.dataTransfer.effectAllowed = "copy";
+  });
 });
+
+canvas.addEventListener("dragover", function (event) {
+  event.preventDefault();
+  canvas.classList.add("drag-over");
+  event.dataTransfer.dropEffect = "copy";
+});
+
+canvas.addEventListener("dragleave", function () {
+  canvas.classList.remove("drag-over");
+});
+
+canvas.addEventListener("drop", function (event) {
+  event.preventDefault();
+  canvas.classList.remove("drag-over");
+
+  const src = event.dataTransfer.getData("text/plain");
+
+  if (!src) {
+    return;
+  }
+
+  const canvasRect = canvas.getBoundingClientRect();
+  const x = event.clientX - canvasRect.left - 75;
+  const y = event.clientY - canvasRect.top - 75;
+
+  createCanvasObject(src, x, y);
+});
+
+// click canvas to deselect
+canvas.addEventListener("pointerdown", function (event) {
+  if (event.target === canvas || event.target === emptyMessage) {
+    deselectObject();
+  }
+});
+
+// input controls
+sizeControl.addEventListener("input", function (event) {
+  if (!selectedObject) {
+    return;
+  }
+
+  const size = Number(event.target.value);
+
+  if (selectedObject.classList.contains("canvas-text")) {
+    const fontSize = Math.max(12, Math.round(size / 5));
+
+    selectedObject.style.fontSize = `${fontSize}px`;
+    selectedObject.dataset.fontSize = fontSize;
+    sizeValue.textContent = `${fontSize}px`;
+  } else {
+    selectedObject.style.width = `${size}px`;
+    sizeValue.textContent = `${size}px`;
+  }
+});
+
+rotateControl.addEventListener("input", function (event) {
+  if (!selectedObject) {
+    return;
+  }
+
+  const rotation = Number(event.target.value);
+
+  selectedObject.dataset.rotation = rotation;
+  selectedObject.style.transform = `rotate(${rotation}deg)`;
+  rotateValue.textContent = `${rotation}°`;
+});
+
+function updateControls() {
+  if (!selectedObject) {
+    return;
+  }
+
+  const rotation = Number(selectedObject.dataset.rotation) || 0;
+
+  rotateControl.value = rotation;
+  rotateValue.textContent = `${rotation}°`;
+
+  if (selectedObject.classList.contains("canvas-text")) {
+    const fontSize = parseInt(getComputedStyle(selectedObject).fontSize);
+
+    sizeControl.value = Math.min(500, Math.max(30, fontSize * 5));
+    sizeValue.textContent = `${fontSize}px`;
+  } else {
+    const width = parseInt(getComputedStyle(selectedObject).width);
+
+    sizeControl.value = Math.min(500, Math.max(30, width));
+    sizeValue.textContent = `${width}px`;
+  }
+}
+
+const colorButtons = document.querySelectorAll(".color-button");
+
+colorButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    if (!selectedObject) {
+      return;
+    }
+
+    // Filters only make sense for images.
+    if (selectedObject.classList.contains("canvas-object")) {
+      selectedObject.style.filter = button.dataset.filter;
+    }
+  });
+});
+
+function deleteSelectedObject() {
+  if (!selectedObject) {
+    return;
+  }
+
+  selectedObject.remove();
+  selectedObject = null;
+  selectionMessage.textContent = "Select an object first.";
+
+  updateEmptyMessage();
+}
+
+document
+  .getElementById("deleteButton")
+  .addEventListener("click", deleteSelectedObject);
+
+// keyboard delete
+document.addEventListener("keydown", function (event) {
+  const activeElement = document.activeElement;
+
+  const userIsTyping = activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA";
+
+  if (userIsTyping) {
+    return;
+  }
+
+  if (event.key === "Delete" || event.key === "Backspace") {
+    event.preventDefault();
+
+    deleteSelectedObject();
+  }
+});
+
+document.getElementById("duplicateButton")
+  .addEventListener("click", function () {
+    if (!selectedObject) {
+      return;
+    }
+
+    const clone = selectedObject.cloneNode(true);
+    clone.classList.remove("selected");
+
+    const currentLeft = parseFloat(selectedObject.style.left) || 0;
+    const currentTop = parseFloat(selectedObject.style.top) || 0;
+
+    clone.style.left = `${currentLeft + 25}px`;
+    clone.style.top = `${currentTop + 25}px`;
+    clone.style.zIndex = ++highestZIndex;
+    canvas.appendChild(clone);
+
+    makeDraggable(clone);
+    selectObject(clone);
+    updateEmptyMessage();
+  });
+
+document.getElementById("bringForwardButton")
+  .addEventListener("click", function () {
+    if (!selectedObject) {
+      return;
+    }
+
+    selectedObject.style.zIndex = ++highestZIndex;
+  });
+
+document.getElementById("sendBackwardButton")
+  .addEventListener("click", function () {
+    if (!selectedObject) {
+      return;
+    }
+
+    const currentZ = Number(selectedObject.style.zIndex) || 1;
+    selectedObject.style.zIndex = Math.max(1, currentZ - 1);
+  });
+
+document.getElementById("addTextButton").addEventListener("click", function () {
+  const text = textInput.value.trim();
+
+  if (!text) {
+    return;
+  }
+
+  createTextObject(text);
+  textInput.value = "";
+});
+
+textInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("addTextButton").click();
+  }
+});
+
+const backgroundButtons = document.querySelectorAll("[data-background]");
+
+backgroundButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const background = button.dataset.background;
+
+    canvas.style.backgroundImage = "none";
+
+    switch (background) {
+      case "white":
+        canvas.style.backgroundColor = "#ffffff";
+        break;
+
+      case "clouds":
+        canvas.style.backgroundColor = "#ffffff";
+        canvas.style.backgroundImage = "url('images/clouds.jpg')";
+        break;
+
+      case "space":
+        canvas.style.backgroundColor = "#000000";
+        canvas.style.backgroundImage = "url('images/space.jpg')";
+        break;
+
+      case "anime":
+        canvas.style.backgroundColor = "#ffffff";
+        canvas.style.backgroundImage = "url('images/anime.jpg')";
+        break;
+
+      case "nyc":
+        canvas.style.backgroundColor = "#ffffff";
+        canvas.style.backgroundImage = "url('images/nyc.jpg')";
+        break;
+
+      case "none":
+        canvas.style.backgroundColor = "rgb(227, 205, 176)";
+        break;
+    }
+  });
+});
+
+document.getElementById("resetButton").addEventListener("click", function () {
+  const objects = getCanvasObjects();
+
+  objects.forEach((object) => object.remove());
+  selectedObject = null;
+  highestZIndex = 1;
+  canvas.style.backgroundImage = "none";
+  canvas.style.backgroundColor = "#ffffff";
+  selectionMessage.textContent = "Select an object first.";
+
+  updateEmptyMessage();
+});
+
+document.getElementById("downloadCarrot")
+  .addEventListener("click", async function () {
+    const previousSelection = selectedObject;
+
+    if (previousSelection) {
+      previousSelection.classList.remove("selected");
+    }
+
+    // Hide empty canvas message from download.
+    const previousEmptyDisplay = emptyMessage.style.display;
+    emptyMessage.style.display = "none";
+
+    try {
+      const renderedCanvas = await html2canvas(canvas, {
+        backgroundColor: null,
+        scale: 2,
+        useCORS: true,
+      });
+
+      const downloadLink = document.createElement("a");
+
+      downloadLink.download = "custom-carrot.png";
+      downloadLink.href = renderedCanvas.toDataURL("image/png");
+      downloadLink.click();
+    } catch (error) {
+      console.error("Could not download carrot:", error);
+      alert("Something went wrong while creating the image.");
+    } finally {
+      // Restore UI after download.
+      if (previousSelection) {
+        previousSelection.classList.add("selected");
+      }
+
+      emptyMessage.style.display = previousEmptyDisplay;
+      updateEmptyMessage();
+    }
+  });
+
+updateEmptyMessage();

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Carrot Gallery</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="gallery.css">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="config.js"></script>
+        <script src="gallery.js" defer></script>
+    </head>
+
+    <body>
+        <header class="site-header">
+            <a href="index.html" class="site-title"> Customize a Carrot</a>
+            <nav class="carrot__nav">
+                <a href="gallery.html" class="carrot__navItem">Gallery</a>
+                <a href="about.html" class="carrot__navItem">About</a>
+                <a href="https://github.com/raclim/customize-a-carrot" class="carrot__navItem" target="_blank" rel="noopener noreferrer">
+                    Github
+                </a>
+            </nav>
+        </header>
+
+        <main class="gallery-page">
+            <div class="gallery-top">
+                <div>
+                    <h1>Carrot Gallery</h1>
+                    <p> Creations from carrot enthusiasts!</p>
+                </div>
+                <button id="openUploadButton" class="main-button" type="button"> + Add Yours</button>
+            </div>
+
+            <div class="gallery-tools">
+                <input id="gallerySearch" type="search" placeholder="Search carrots..." aria-label="Search gallery">
+                <span id="galleryCount">0 carrots</span>
+            </div>
+
+            <p id="galleryStatus" class="gallery-status">Loading carrots...</p>
+
+            <!-- grid -->
+            <div id="galleryGrid" class="gallery-grid">
+                <button id="galleryAddCard" class="gallery-card add-card" type="button">
+                    <span class="add-plus">+</span>
+                    <span>Add yours</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- upload modal -->
+        <div id="uploadModal" class="upload-modal" aria-hidden="true">
+            <div class="upload-window" role="dialog" aria-modal="true" aria-labelledby="uploadTitleHeading">
+                <div class="upload-header">
+                    <h2 id="uploadTitleHeading">Add to Gallery</h2>
+                    <button id="closeUploadButton" class="close-button" type="button" aria-label="Close">
+                        ×
+                    </button>
+                </div>
+
+
+                <form id="uploadForm">
+                    <label class="image-picker" for="imageUpload">
+                        <input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp" required>
+                        <div id="uploadPlaceholder">
+                            <span class="upload-plus">+</span>
+                            <strong>Choose your carrot</strong>
+                            <span>PNG, JPG or WEBP</span>
+                            <small>maximum 5 MB</small>
+                        </div>
+                        <img id="uploadPreview" alt="Preview of your creation">
+                    </label>
+
+                    <label class="form-field">
+                        <span>Title</span>
+                        <input id="postTitle" type="text" maxlength="50" placeholder="carrot goes to space" required>
+                    </label>
+
+                    <label class="form-field">
+                        <span>
+                            Your name
+                        </span>
+                        <input id="postAuthor" type="text" maxlength="30" placeholder="carrotfan123" required>
+                    </label>
+
+                    <p id="uploadStatus" class="upload-status"></p>
+                    <button id="submitUploadButton" class="submit-button" type="submit">
+                        Submit to Gallery
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>Rachel Lim 2026</p>
+        </footer>
+    </body>
+</html>

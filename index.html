@@ -1,122 +1,154 @@
 <!DOCTYPE html>
-  <html lang="en">
+
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
         <title>Customize a Carrot</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="index.css">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+        <script src="script.js" defer></script>
     </head>
 
-    <body class="carrot__body">
-        <header>
-            <div class="carrot__headerHolder">
-                <h1>
-                    <a href="index.html">Customize a Carrot</a>
-                </h1>
-
-                <nav class="carrot__nav">
-                    <a href="about.html" class="carrot__navItem">About</a>
-                    <a href="https://github.com/raclim/customize-a-carrot" class="carrot__navItem">Github</a>
-                </nav>
-            </div>
+    <body>
+        <header class="site-header">
+            <a href="index.html" class="site-title"> Customize a Carrot</a>
+            <nav class="carrot__nav">
+                <a href="gallery.html" class="carrot__navItem">Gallery</a>
+                <a href="about.html" class="carrot__navItem">About</a>
+                <a href="https://github.com/raclim/customize-a-carrot" class="carrot__navItem" target="_blank" rel="noopener noreferrer">
+                    Github
+                </a>
+            </nav>
         </header>
 
-        <main>
-            <div class="carrot__holder">
-                <div class="carrot_gameButtonsHolder">
-                    <div class="carrot__gameButtons">
-                        <p>Type of Carrot</p>
-                        <button onclick="clickRealisticCarrot()">
-                            Realistic Carrot
-                        </button>
-                        <button onclick="clickRealisticCarrots()">
-                            Realistic Carrots
-                        </button>
-                        <button onclick="clickCartoonCarrot()">
-                            Cartoon Carrot
-                        </button>
-                        <button onclick="clickCheese()">
-                            Cheese
-                        </button>
-                    </div>
-                    <div class="carrot__gameButtons">
-                        <p>Color of Carrot</p>
-                        <button onclick="clickOrangeCarrot()">
-                            Orange
-                        </button>
-                        <button onclick="clickGreenCarrot()">
-                            Green
-                        </button>
-                        <button onclick="clickBlueCarrot()">
-                            Blue
-                        </button>
-                        <button onclick="clickHotPinkCarrot()">
-                            Hot Pink
-                        </button>
-                    </div>
-                    <div class="carrot__gameButtons">
-                        <p>Carrot Companions</p>
-                        <button onclick="addRabbit()">rabbit</button>
-                        <button onclick="addSunflower()">sunflllllower</button>
-                        <button onclick="addKale()">kalllllle</button>
-                        <button onclick="addDog()">dog</button>
-                        <button onclick="removeAllCompanions()">remove everything</button>
-                    </div>
+        <main class="editor">
+            <!-- Left Side Panel - stores draggable assets and background color.  -->
+            <aside class="asset-panel">
+                <h2>Carrots</h2>
+                <p class="panel-help">Drag something onto the canvass.</p>
 
-                    <div class="carrot__gameButtons">
-                        <p>Backgrrrrround Co000lor</p>
-                        <button onclick="clickWhiteBackground()">
-                            white
-                        </button>
-                        <button onclick="clickCloudBackground()">
-                            clouuuuuds
-                        </button>
-                        <button onclick="clickSpaceBackground()">
-                            sppppace
-                        </button>
-                        <button onclick="clickAnimeBackground()">
-                            animmmme
-                        </button>
-                        <button onclick="clickNYCBackground()">
-                            nyccc
-                        </button>
-                        <button onclick="clickNoBackground()">
-                            no backgroundddddd
-                        </button>
-                    </div>
-
-                    <div class="carrot__gameButtons">
-                        <p>Text</p>
-                        <input type="text" id="textInput" name="textInput">
-                        <button type="submit" onclick="onAddText()">Submit</button>
-
-                        <button onclick="onRemoveText()">Remove Text</button>
-                    </div>
-
-                    <div class="carrot__gameButtons">
-                        <p>Download</p>
-                        <input id="downloadCarrot" download="download.png" type="button" value="Download Carrot" />
-                    </div>
+                <div class="asset-grid">
+                    <button class="asset-button" data-src="images/realistic_carrot.png" title="Realistic Carrot">
+                        <img src="images/realistic_carrot.png" alt="Realistic carrot" draggable="true">
+                    </button>
+                    <button class="asset-button" data-src="images/realistic_carrots.png" title="Realistic Carrots">
+                        <img src="images/realistic_carrots.png" alt="Realistic carrots" draggable="true">
+                    </button>
+                    <button class="asset-button" data-src="images/cartoon_carrot.png" title="Cartoon Carrot">
+                        <img src="images/cartoon_carrot.png" alt="Cartoon carrot" draggable="true">
+                    </button>
+                    <button class="asset-button" data-src="images/cheese.png" title="Cheese">
+                        <img src="images/cheese.png" alt="Cheese" draggable="true">
+                    </button>
                 </div>
 
+                <h2>Companions</h2>
+                <div class="asset-grid">
+                    <button class="asset-button" data-src="images/rabbit.png" title="Rabbit">
+                        <img src="images/rabbit.png" alt="Rabbit" draggable="true">
+                    </button>
+                    <button class="asset-button" data-src="images/sunflower.png" title="Sunflower">
+                        <img src="images/sunflower.png" alt="Sunflower" draggable="true">
+                    </button>
+                    <button class="asset-button" data-src="images/kale.png" title="Kale">
+                        <img src="images/kale.png" alt="Kale" draggable="true">
+                    </button>
+                    <button class="asset-button" data-src="images/dog.png" title="Dog">
+                        <img src="images/dog.png" alt="Dog" draggable="true">
+                    </button>
+                </div>
+
+                <h2>Backgroundf</h2>
+                <div class="background-buttons">
+                    <button data-background="white">White </button>
+                    <button data-background="clouds">Clouds </button>
+                    <button data-background="space">Space</button>
+                    <button data-background="anime"> Anime</button>
+                    <button data-background="nyc">NYC</button>
+                    <button data-background="none">None</button>
+                </div>
+            </aside>
+
+            <!-- Center Panel - editor where user can drag assets, edit canvas, and reset/download creation. -->
+            <section class="canvas-column">
+                <div class="canvas-heading">
+                    <h2>Your Carrot World</h2>
+                    <p>Click an object to select it.</p>
+                </div>
                 <div id="carrotGame">
-                    <p id="textBox"></p>
-                    <img id="carrotImg" src="images/realistic_carrot.png" alt="realistic carrot" width="40%">
+                    <p id="emptyMessage"> dragc carrots here</p>
                 </div>
-            </div>
+                <div class="canvas-actions">
+                    <button id="resetButton">Reset</button>
+                    <button id="downloadCarrot">Download</button>
+                </div>
+            </section>
+
+            <!-- Right Panel - Controls for Image.  -->
+            <aside class="controls-panel">
+                <h2>Customize</h2>
+                <p id="selectionMessage" class="panel-help">Select an object first.</p>
+
+                <div class="control-group">
+                    <!-- color -->
+                    <h3>Color</h3>
+                    <div class="color-buttons">
+                        <button class="color-button orange" data-filter="none" aria-label="Orange" title="Orange"></button>
+                        <button class="color-button green" data-filter="hue-rotate(90deg)" aria-label="Green" title="Green"></button>
+                        <button class="color-button blue" data-filter="hue-rotate(200deg)" aria-label="Blue" title="Blue"></button>
+                        <button class="color-button pink" data-filter="hue-rotate(300deg)" aria-label="Hot Pink" title="Hot Pink"></button>
+                    </div>
+                </div>
+
+                <!-- size -->
+                <div class="control-group">
+                    <label for="sizeControl">
+                        <h3>Size</sh3>
+                        <span id="sizeValue">150px</span>
+                    </label>
+                    <input id="sizeControl" type="range" min="30" max="500" value="150">
+                </div>
+
+                <!-- rotation -->
+                <div class="control-group">
+                    <label for="rotateControl">
+                        <h3>Rotate</h3>
+                        <span id="rotateValue">0°</span>
+                    </label>
+                    <input id="rotateControl" type="range" min="-180" max="180" value="0">
+                </div>
+
+                <!-- layer -->
+                <div class="control-group">
+                    <h3>Layer</h3>
+                    <div class="control-button-row">
+                        <button id="bringForwardButton">Forward</button>
+                        <button id="sendBackwardButton">Back</button>
+                    </div>
+                </div>
+
+                <!-- duplicate/delete -->
+                <div class="control-group">
+                    <button id="duplicateButton">Duplicate</button>
+                    <button id="deleteButton" class="danger-button">Delete Selectedd</button>
+                </div>
+
+                <!-- add text -->
+                <div class="control-group">
+                    <h3>Text</h3>
+                    <input id="textInput" type="text" placeholder="carrot thoughts..." maxlength="60">
+                    <button id="addTextButton">Add Textt</button>
+                </div>
+            </aside>
         </main>
 
-        <script src="script.js"></script>
+        <footer>
+            <p>Rachel Lim 2026</p>
+        </footer>
     </body>
-
-  <footer>
-    <p>Rachel Lim 2026</p>
-  </footer>
 </html>
