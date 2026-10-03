@@ -1,5 +1,3 @@
-<img width="1388" height="855" alt="Screenshot 2026-10-02 at 11 31 54 PM" src="https://github.com/user-attachments/assets/e47dbf32-2adf-424e-9bee-4568558c3431" />
-<img width="1386" height="854" alt="Screenshot 2026-10-02 at 11 30 30 PM" src="https://github.com/user-attachments/assets/f0186b2b-c899-46ab-836b-01479fdd9c4f" />
 # Customize a Carrot 🥕
 
 This is the [website for Customize a Carrot](https://raclim.github.io/customize-a-carrot/).
