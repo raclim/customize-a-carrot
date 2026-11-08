@@ -1,428 +1,446 @@
-/* Global */
+:root {
+  --paper: #fafaee;
+  --green: #006737;
+  --green-dark: #00512c;
+  --orange: #e99420;
+  --ink: #006737;
+  --white: #fffefa;
+  --red: #a42c2c;
+}
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-
 html {
-    margin: 0;
-    padding: 0;
-    font-family: "Nunito", sans-serif;
-    color: darkgreen;
-    background-color: rgb(227, 205, 176);
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  color: var(--ink);
+  background: var(--paper);
 }
-
 body {
-    margin: 0;
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
 }
-
-/* Header */
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+}
+a:hover {
+  background: yellow;
+  text-decoration-style: dotted;
+}
+:focus-visible {
+  outline: 2px dotted var(--green);
+  outline-offset: 4px;
+}
 .site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 2rem;
 }
-
 .site-title {
-    color: darkgreen;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    text-decoration: none;
+  color: var(--green);
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-decoration: none;
 }
-
 .site-title:hover {
-    background-color: orange;
-    text-decoration: wavy underline;
+  background: yellow;
+  text-decoration: underline dotted;
 }
-
 .carrot__nav {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
 }
-
 .carrot__navItem {
-    background-color: darkgreen;
-    color: white;
-    padding: 0.7rem 1rem;
-    border: 0.1rem solid orange;
-    border-radius: 1rem;
-    box-shadow: 8px 8px orange;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-decoration: none;
+  display: inline-block;
+  padding: 0.55rem 0.8rem;
+  color: var(--green);
+  background: var(--white);
+  border: 1px solid var(--green);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
-
 .carrot__navItem:hover {
-    color: darkorange;
-    text-decoration: wavy underline;
+  color: var(--green-dark);
+  background: yellow;
+  text-decoration: underline dotted;
 }
-
-/* Editor */
 .editor {
-    width: min(1500px, 96%);
-
-    margin: 1rem auto 3rem;
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(180px, 240px)
-        minmax(400px, 1fr)
-        minmax(190px, 240px);
-
-    gap: 1.5rem;
-    align-items: start;
+  width: min(1500px, 96%);
+  margin: 2rem auto 3rem;
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(
+      190px,
+      240px
+    );
+  gap: 1.5rem;
+  align-items: start;
 }
-
-/* Side Panels */
 .asset-panel,
 .controls-panel {
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 2px solid darkgreen;
-    border-radius: 1rem;
-    padding: 1rem;
+  min-width: 0;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid var(--green);
 }
-
 .asset-panel h2,
 .controls-panel h2 {
-    margin-top: 0;
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  line-height: 1.4;
 }
-
 .asset-panel h2:not(:first-child) {
-    margin-top: 2rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
 }
-
 .panel-help {
-    margin-top: -0.5rem;
-    font-family: "Roboto Mono", monospace;
-    font-size: 0.8rem;
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
 }
-
-/* Asset Library */
 .asset-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
 }
-
 .asset-button {
-    height: 95px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    background-color: white;
-    border: 2px dashed green;
-    border-radius: 0.75rem;
-    cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 95px;
+  padding: 0.5rem;
+  background: var(--white);
+  border: 1px dashed var(--green);
+  border-radius: 0;
+  cursor: grab;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
-
 .asset-button:hover {
-    background-color: #fff6dc;
-    border-color: orange;
-    transform: rotate(-2deg);
+  background: yellow;
 }
-
 .asset-button:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
-
 .asset-button img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
 }
-
 .background-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
-
-button {
-    font-family: "Nunito", sans-serif;
-    font-weight: 700;
-}
-
 .background-buttons button,
 .controls-panel button,
 .canvas-actions button {
-    padding: 0.5rem 0.7rem;
-    background-color: white;
-    color: green;
-    border: 0.1rem dashed green;
-    border-radius: 0.5rem;
-    cursor: pointer;
+  padding: 0.5rem 0.65rem;
+  background: var(--white);
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
-
 .background-buttons button:hover,
 .controls-panel button:hover,
 .canvas-actions button:hover {
-    background-color: green;
-    color: white;
-    border-color: white;
+  background: var(--green);
+  color: white;
 }
-
-/* Main Canvas */
 .canvas-column {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
-
 .canvas-heading {
-    text-align: center;
+  text-align: center;
 }
-
 .canvas-heading h2 {
-    margin: 0;
+  margin: 0;
+  font-size: 1.3rem;
 }
-
 .canvas-heading p {
-    margin-top: 0.25rem;
-    font-family: "Roboto Mono", monospace;
-    font-size: 0.85rem;
+  margin: 0.35rem 0 0.9rem;
+  font-size: 0.75rem;
 }
-
 #carrotGame {
-    position: relative;
-    width: 100%;
-    height: min(70vh, 700px);
-    min-height: 500px;
-    overflow: hidden;
-    background-color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 3px solid darkgreen;
-    border-radius: 0.75rem;
-    touch-action: none;
+  position: relative;
+  width: 100%;
+  height: min(70vh, 700px);
+  min-height: 500px;
+  overflow: hidden;
+  background-color: var(--white);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid var(--green);
+  box-shadow: 4px 4px 0 rgba(0, 103, 55, 0.2);
+  touch-action: none;
 }
-
 #carrotGame.drag-over {
-    outline: 5px dashed orange;
-    outline-offset: -12px;
+  outline: 3px dashed var(--orange);
+  outline-offset: -10px;
 }
-
 #emptyMessage {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    color: rgba(0, 100, 0, 0.45);
-    font-family: "Roboto Mono", monospace;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 90%;
+  margin: 0;
+  color: #6d9b7e;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  text-align: center;
+  pointer-events: none;
 }
-
-/* Main Canvas Objects */
 .canvas-object {
-    position: absolute;
-    width: 150px;
-    height: auto;
-    display: block;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-drag: none;
-    touch-action: none;
-    transform-origin: center;
+  position: absolute;
+  display: block;
+  width: 150px;
+  height: auto;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
+  transform-origin: center;
 }
-
 .canvas-object:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
-
-.canvas-object.selected {
-    outline: 4px solid #6caeff;
-    outline-offset: 4px;
-}
-
-.canvas-text {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    width: max-content;
-    max-width: 350px;
-    padding: 0.5rem 0.75rem;
-    background-color: white;
-    color: darkgreen;
-    border: 2px solid green;
-    border-radius: 0.5rem;
-    box-shadow: 6px 6px green;
-    font-size: 24px;
-    font-weight: 700;
-    cursor: grab;
-    user-select: none;
-    touch-action: none;
-    transform-origin: center;
-}
-
+.canvas-object.selected,
 .canvas-text.selected {
-    outline: 4px solid #6caeff;
-    outline-offset: 4px;
+  outline: 2px dashed var(--orange);
+  outline-offset: 5px;
 }
-
+.canvas-text {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: max-content;
+  max-width: 350px;
+  padding: 0.5rem 0.75rem;
+  background: var(--white);
+  color: var(--green);
+  border: 1px solid var(--green);
+  box-shadow: 3px 3px 0 var(--green);
+  font-size: 24px;
+  font-weight: 700;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transform-origin: center;
+}
 .canvas-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
 }
-
-/* Controls */
+.canvas-actions #downloadCarrot {
+  background: var(--green);
+  color: white;
+}
+.canvas-actions #downloadCarrot:hover {
+  background: var(--green-dark);
+}
 .controls-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
+.controls-panel > .panel-help {
+  margin-top: -0.4rem;
+}
 .control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-bottom: 1rem;
+}
+.control-group:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.control-group h3 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.control-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+.control-group label span {
+  font-size: 0.75rem;
+}
+.control-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--green);
+}
+#textInput {
+  width: 100%;
+  min-width: 0;
+  padding: 0.6rem;
+  background: var(--white);
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 0;
+  font-size: 0.8rem;
+}
+.control-button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.controls-panel .danger-button {
+  color: var(--red);
+  border-color: var(--red);
+}
+.controls-panel .danger-button:hover {
+  background: var(--red);
+  color: white;
+}
+.color-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0.25rem;
+}
+.controls-panel .color-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--green);
+}
+.controls-panel .color-button.orange {
+  background: orange;
+}
+.controls-panel .color-button.green {
+  background: #4cab4c;
+}
+.controls-panel .color-button.blue {
+  background: #588cff;
+}
+.controls-panel .color-button.pink {
+  background: hotpink;
+}
+.controls-panel .color-button:hover {
+  transform: scale(1.08);
+}
+footer {
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+}
+.about__text {
+  max-width: 850px;
+  min-height: 60vh;
+  padding: 3rem 2rem;
+  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+  line-height: 1.7;
+}
+@media (max-width: 1050px) {
+  .editor {
+    grid-template-columns: minmax(160px, 210px) minmax(0, 1fr);
+  }
+  .controls-panel {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+  .controls-panel > h2,
+  .controls-panel > .panel-help {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 700px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .carrot__nav {
+    gap: 0.6rem;
+  }
+  .editor {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px dashed rgba(0, 100, 0, 0.35);
-}
-
-.control-group:last-child {
-    border-bottom: none;
-}
-
-.control-group h3 {
-    margin: 0;
-}
-
-.control-group label {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-}
-
-.control-group input[type="range"] {
+    gap: 1.5rem;
+    width: calc(100% - 2rem);
+    margin-top: 1.5rem;
+  }
+  .asset-panel,
+  .controls-panel,
+  .canvas-column {
     width: 100%;
-    accent-color: darkgreen;
-}
-
-#textInput {
-    width: 100%;
-    padding: 0.6rem;
-    border: 2px solid green;
-    border-radius: 0.5rem;
-    font-family: "Nunito", sans-serif;
-}
-
-.control-button-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 0.5rem;
-}
-
-.danger-button {
-    border-color: #9e1d1d !important;
-    color: #9e1d1d !important;
-}
-
-.danger-button:hover {
-    background-color: #9e1d1d !important;
-    color: white !important;
-}
-
-.color-buttons {
+  }
+  .asset-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .controls-panel {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  }
+  #carrotGame {
+    height: 60vh;
+    min-height: 380px;
+  }
+  .about__text {
+    padding: 2rem 1rem;
+  }
 }
-
-.color-button {
-    width: 38px;
-    height: 38px;
-    padding: 0 !important;
-    border: 3px solid white !important;
-    border-radius: 50% !important;
-    box-shadow: 0 0 0 2px darkgreen;
-    cursor: pointer;
+@media (max-width: 420px) {
+  .site-title {
+    font-size: 1.65rem;
+  }
+  .carrot__navItem {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.55rem;
+  }
+  .asset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #carrotGame {
+    min-height: 330px;
+  }
 }
-
-.color-button.orange {
-    background: orange !important;
-}
-
-.color-button.green {
-    background: #4cab4c !important;
-}
-
-.color-button.blue {
-    background: #588cff !important;
-}
-
-.color-button.pink {
-    background: hotpink !important;
-}
-
-footer {
-    padding: 1rem 2rem;
-    font-weight: 700;
-}
-
-/* About */
-.about__text {
-    padding: 3rem;
-    font-weight: 700;
-    min-height: 60vh;
-    font-size: 2rem;
-}
-
-@media (max-width: 1000px) {
-    .editor {
-        grid-template-columns: 170px 1fr;
-    }
-    .controls-panel {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .controls-panel > h2,
-    .controls-panel > .panel-help {
-        grid-column: 1 / -1;
-    }
-
-}
-
-
-@media (max-width: 700px) {
-    .site-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-    }
-
-    .editor {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .asset-panel,
-    .controls-panel,
-    .canvas-column {
-        width: 100%;
-    }
-
-    .asset-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .controls-panel {
-        display: flex;
-    }
-
-    #carrotGame {
-        min-height: 450px;
-    }
-
+@media (prefers-reduced-motion: reduce) {
+  .carrot__navItem,
+  .asset-button,
+  .background-buttons button,
+  .controls-panel button,
+  .canvas-actions button {
+    transition: none;
+  }
 }
