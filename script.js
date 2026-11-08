@@ -245,21 +245,6 @@ function updateControls() {
   }
 }
 
-const colorButtons = document.querySelectorAll(".color-button");
-
-colorButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    if (!selectedObject) {
-      return;
-    }
-
-    // Filters only make sense for images.
-    if (selectedObject.classList.contains("canvas-object")) {
-      selectedObject.style.filter = button.dataset.filter;
-    }
-  });
-});
-
 function deleteSelectedObject() {
   if (!selectedObject) {
     return;
@@ -292,28 +277,6 @@ document.addEventListener("keydown", function (event) {
     deleteSelectedObject();
   }
 });
-
-document.getElementById("duplicateButton")
-  .addEventListener("click", function () {
-    if (!selectedObject) {
-      return;
-    }
-
-    const clone = selectedObject.cloneNode(true);
-    clone.classList.remove("selected");
-
-    const currentLeft = parseFloat(selectedObject.style.left) || 0;
-    const currentTop = parseFloat(selectedObject.style.top) || 0;
-
-    clone.style.left = `${currentLeft + 25}px`;
-    clone.style.top = `${currentTop + 25}px`;
-    clone.style.zIndex = ++highestZIndex;
-    canvas.appendChild(clone);
-
-    makeDraggable(clone);
-    selectObject(clone);
-    updateEmptyMessage();
-  });
 
 document.getElementById("bringForwardButton")
   .addEventListener("click", function () {
@@ -386,7 +349,7 @@ backgroundButtons.forEach((button) => {
         break;
 
       case "none":
-        canvas.style.backgroundColor = "rgb(227, 205, 176)";
+        canvas.style.backgroundColor = "#fff6dd";
         break;
     }
   });

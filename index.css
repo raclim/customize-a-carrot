@@ -1,446 +1,496 @@
 :root {
-  --paper: #fafaee;
-  --green: #006737;
-  --green-dark: #00512c;
-  --orange: #e99420;
-  --ink: #006737;
-  --white: #fffefa;
-  --red: #a42c2c;
+    --paper: #fff6dd;
+    --green: #4ebb38;
+    --green-dark: #4ebb38;
+    --orange: #ade231;
+    --ink: #4ebb38;
+    --white: #fffefa;
+    --red: #a42c2c;
 }
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 html {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto Mono", ui-monospace, monospace;
-  color: var(--ink);
-  background: var(--paper);
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    color: var(--ink);
+    background: var(--paper);
 }
+
 body {
-  margin: 0;
-  min-height: 100vh;
+    margin: 0;
+    min-height: 100vh;
 }
+
 button,
 input {
-  font: inherit;
+    font: inherit;
 }
+
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 a {
-  color: inherit;
+    color: inherit;
 }
+
 a:hover {
-  background: yellow;
-  text-decoration-style: dotted;
+    background: yellow;
+    text-decoration-style: dotted;
 }
-:focus-visible {
-  outline: 2px dotted var(--green);
-  outline-offset: 4px;
-}
+
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
 }
+
 .site-title {
-  color: var(--green);
-  font-size: clamp(1.65rem, 3vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  text-decoration: none;
+    color: var(--green);
+    font-size: clamp(1.65rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-decoration: none;
 }
+
 .site-title:hover {
-  background: yellow;
-  text-decoration: underline dotted;
+    background: yellow;
+    text-decoration: underline dotted;
 }
+
 .carrot__nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
 }
+
 .carrot__navItem {
-  display: inline-block;
-  padding: 0.55rem 0.8rem;
-  color: var(--green);
-  background: var(--white);
-  border: 1px solid var(--green);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+    display: inline-block;
+    padding: 0.55rem 0.8rem;
+    color: var(--green);
+    background: var(--white);
+    border: 1px solid var(--green);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.15s ease;
 }
+
 .carrot__navItem:hover {
-  color: var(--green-dark);
-  background: yellow;
-  text-decoration: underline dotted;
+    background: var(--green);
+    color: white;
+    text-decoration: underline dotted;
 }
+
 .editor {
-  width: min(1500px, 96%);
-  margin: 2rem auto 3rem;
-  display: grid;
-  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(
-      190px,
-      240px
-    );
-  gap: 1.5rem;
-  align-items: start;
+    width: min(800px, 90%);
+    margin: 1.5rem auto 3rem;
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    grid-template-areas:
+        "assets canvas"
+        "controls canvas";
+    gap: 0.65rem 1.25rem;
+    align-items: start;
 }
+
+.asset-panel {
+    grid-area: assets;
+}
+
+.controls-panel {
+    grid-area: controls;
+}
+
+.canvas-column {
+    grid-area: canvas;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
 .asset-panel,
 .controls-panel {
-  min-width: 0;
-  padding: 1rem;
-  background: transparent;
-  border: 1px solid var(--green);
+    min-width: 0;
+    padding: 0.75rem;
+    background: var(--white);
+    border: 1px solid var(--green);
 }
+
+.asset-panel {
+    padding: 0.6rem;
+}
+
 .asset-panel h2,
 .controls-panel h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1.1rem;
-  line-height: 1.4;
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
+
+.asset-panel h2 {
+    margin: 0 0 0.35rem;
+    font-size: 0.8rem;
+}
+
 .asset-panel h2:not(:first-child) {
-  margin-top: 2rem;
-  padding-top: 1rem;
+    margin-top: 0.75rem;
+    padding-top: 0;
 }
+
 .panel-help {
-  margin: 0 0 1rem;
-  font-size: 0.72rem;
-  line-height: 1.5;
+    margin: 0 0 0.75rem;
+    font-size: 0.65rem;
+    line-height: 1.4;
 }
+
+.asset-panel .panel-help {
+    margin: 0 0 0.5rem;
+    font-size: 0.6rem;
+}
+
 .asset-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem;
 }
+
 .asset-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  height: 95px;
-  padding: 0.5rem;
-  background: var(--white);
-  border: 1px dashed var(--green);
-  border-radius: 0;
-  cursor: grab;
-  transition:
-    background 0.15s ease,
-    transform 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 50px;
+    padding: 0.25rem;
+    background: #fff;
+    border: none;
+    cursor: grab;
 }
+
 .asset-button:hover {
-  background: yellow;
+    background: yellow;
 }
+
 .asset-button:active {
-  cursor: grabbing;
+    cursor: grabbing;
 }
+
 .asset-button img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
 }
+
 .background-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
 }
+
 .background-buttons button,
 .controls-panel button,
 .canvas-actions button {
-  padding: 0.5rem 0.65rem;
-  background: var(--white);
-  color: var(--green);
-  border: 1px solid var(--green);
-  border-radius: 0;
-  font-size: 0.75rem;
-  font-weight: 700;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
+    padding: 0.35rem 0.45rem;
+    background: var(--white);
+    color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
 }
+
+.background-buttons button {
+    padding: 0.25rem 0.35rem;
+    font-size: 0.6rem;
+}
+
 .background-buttons button:hover,
 .controls-panel button:hover,
 .canvas-actions button:hover {
-  background: var(--green);
-  color: white;
+    background: var(--green);
+    color: white;
 }
-.canvas-column {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.canvas-heading {
-  text-align: center;
-}
-.canvas-heading h2 {
-  margin: 0;
-  font-size: 1.3rem;
-}
-.canvas-heading p {
-  margin: 0.35rem 0 0.9rem;
-  font-size: 0.75rem;
-}
+
 #carrotGame {
-  position: relative;
-  width: 100%;
-  height: min(70vh, 700px);
-  min-height: 500px;
-  overflow: hidden;
-  background-color: var(--white);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 1px solid var(--green);
-  box-shadow: 4px 4px 0 rgba(0, 103, 55, 0.2);
-  touch-action: none;
+    position: relative;
+    width: 100%;
+    height: min(72vh, 500px);
+    min-height: 450px;
+    overflow: hidden;
+    background-color: var(--white);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid var(--green);
+    touch-action: none;
 }
+
 #carrotGame.drag-over {
-  outline: 3px dashed var(--orange);
-  outline-offset: -10px;
+    outline: 3px dashed var(--orange);
+    outline-offset: -10px;
 }
+
 #emptyMessage {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: max-content;
-  max-width: 90%;
-  margin: 0;
-  color: #6d9b7e;
-  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
-  text-align: center;
-  pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    max-width: 90%;
+    margin: 0;
+    color: #6d9b7e;
+    font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+    text-align: center;
+    pointer-events: none;
 }
+
 .canvas-object {
-  position: absolute;
-  display: block;
-  width: 150px;
-  height: auto;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-drag: none;
-  touch-action: none;
-  transform-origin: center;
+    position: absolute;
+    display: block;
+    width: 150px;
+    height: auto;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+    transform-origin: center;
 }
+
 .canvas-object:active {
-  cursor: grabbing;
+    cursor: grabbing;
 }
+
 .canvas-object.selected,
 .canvas-text.selected {
-  outline: 2px dashed var(--orange);
-  outline-offset: 5px;
+    outline: 2px dashed var(--orange);
+    outline-offset: 5px;
 }
+
 .canvas-text {
-  position: absolute;
-  left: 100px;
-  top: 100px;
-  width: max-content;
-  max-width: 350px;
-  padding: 0.5rem 0.75rem;
-  background: var(--white);
-  color: var(--green);
-  border: 1px solid var(--green);
-  box-shadow: 3px 3px 0 var(--green);
-  font-size: 24px;
-  font-weight: 700;
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-  transform-origin: center;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: max-content;
+    max-width: 350px;
+    padding: 0.5rem 0.75rem;
+    background: var(--white);
+    color: var(--green);
+    border: 1px solid var(--green);
+    box-shadow: 3px 3px 0 var(--green);
+    font-size: 24px;
+    font-weight: 700;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transform-origin: center;
 }
+
 .canvas-actions {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1rem;
-}
-.canvas-actions #downloadCarrot {
-  background: var(--green);
-  color: white;
-}
-.canvas-actions #downloadCarrot:hover {
-  background: var(--green-dark);
-}
-.controls-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.controls-panel > .panel-help {
-  margin-top: -0.4rem;
-}
-.control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding-bottom: 1rem;
-}
-.control-group:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-.control-group h3 {
-  margin: 0;
-  font-size: 0.9rem;
-}
-.control-group label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 700;
-}
-.control-group label span {
-  font-size: 0.75rem;
-}
-.control-group input[type="range"] {
-  width: 100%;
-  accent-color: var(--green);
-}
-#textInput {
-  width: 100%;
-  min-width: 0;
-  padding: 0.6rem;
-  background: var(--white);
-  color: var(--green);
-  border: 1px solid var(--green);
-  border-radius: 0;
-  font-size: 0.8rem;
-}
-.control-button-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-.controls-panel .danger-button {
-  color: var(--red);
-  border-color: var(--red);
-}
-.controls-panel .danger-button:hover {
-  background: var(--red);
-  color: white;
-}
-.color-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  padding: 0.25rem;
-}
-.controls-panel .color-button {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: 2px solid var(--white);
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px var(--green);
-}
-.controls-panel .color-button.orange {
-  background: orange;
-}
-.controls-panel .color-button.green {
-  background: #4cab4c;
-}
-.controls-panel .color-button.blue {
-  background: #588cff;
-}
-.controls-panel .color-button.pink {
-  background: hotpink;
-}
-.controls-panel .color-button:hover {
-  transform: scale(1.08);
-}
-footer {
-  padding: 1rem 2rem;
-  font-size: 0.75rem;
-}
-.about__text {
-  max-width: 850px;
-  min-height: 60vh;
-  padding: 3rem 2rem;
-  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
-  line-height: 1.7;
-}
-@media (max-width: 1050px) {
-  .editor {
-    grid-template-columns: minmax(160px, 210px) minmax(0, 1fr);
-  }
-  .controls-panel {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
-  }
-  .controls-panel > h2,
-  .controls-panel > .panel-help {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 700px) {
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem;
-  }
-  .carrot__nav {
-    gap: 0.6rem;
-  }
-  .editor {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: calc(100% - 2rem);
-    margin-top: 1.5rem;
-  }
-  .asset-panel,
-  .controls-panel,
-  .canvas-column {
-    width: 100%;
-  }
-  .asset-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .controls-panel {
-    display: flex;
-  }
-  #carrotGame {
-    height: 60vh;
-    min-height: 380px;
-  }
-  .about__text {
-    padding: 2rem 1rem;
-  }
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1rem;
 }
-@media (max-width: 420px) {
-  .site-title {
-    font-size: 1.65rem;
-  }
-  .carrot__navItem {
+
+.canvas-actions button {
+    padding: 0.5rem 0.75rem;
     font-size: 0.75rem;
-    padding: 0.45rem 0.55rem;
-  }
-  .asset-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  #carrotGame {
-    min-height: 330px;
-  }
 }
+
+.canvas-actions #downloadCarrot {
+    background: var(--green);
+    color: white;
+}
+
+.canvas-actions #downloadCarrot:hover {
+    background: var(--green-dark);
+}
+
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.controls-panel > .panel-help {
+    margin-top: -0.3rem;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-bottom: 0.65rem;
+}
+
+.control-group:last-child {
+    padding-bottom: 0;
+}
+
+.control-group h3 {
+    margin: 0;
+    font-size: 0.72rem;
+}
+
+.control-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+}
+
+.control-group label span {
+    font-size: 0.65rem;
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+    height: 12px;
+    accent-color: var(--green);
+}
+
+#textInput {
+    width: 100%;
+    min-width: 0;
+    padding: 0.4rem;
+    background: var(--white);
+    color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 0;
+    font-size: 0.7rem;
+}
+
+.control-button-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.controls-panel .danger-button {
+    color: var(--red);
+    border-color: var(--red);
+}
+
+.controls-panel .danger-button:hover {
+    background: var(--red);
+    color: white;
+}
+
+footer {
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+}
+
+.about__text {
+    max-width: 850px;
+    min-height: 60vh;
+    padding: 3rem 2rem;
+    font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+    line-height: 1.7;
+}
+
+@media (max-width: 850px) {
+    .editor {
+        grid-template-columns: 175px minmax(0, 1fr);
+        column-gap: 1rem;
+    }
+
+    .asset-button {
+        height: 50px;
+    }
+}
+
+@media (max-width: 650px) {
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .carrot__nav {
+        gap: 0.6rem;
+    }
+
+    .editor {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 2rem);
+        margin-top: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .asset-panel,
+    .controls-panel,
+    .canvas-column {
+        width: 100%;
+    }
+
+    .asset-panel {
+        order: 1;
+    }
+
+    .canvas-column {
+        order: 2;
+    }
+
+    .controls-panel {
+        order: 3;
+    }
+
+    .asset-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    #carrotGame {
+        height: 55vh;
+        min-height: 350px;
+    }
+
+    .about__text {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-title {
+        font-size: 1.65rem;
+    }
+
+    .carrot__navItem {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.55rem;
+    }
+
+    .asset-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #carrotGame {
+        min-height: 330px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .carrot__navItem,
-  .asset-button,
-  .background-buttons button,
-  .controls-panel button,
-  .canvas-actions button {
-    transition: none;
-  }
+    .carrot__navItem,
+    .asset-button,
+    .background-buttons button,
+    .controls-panel button,
+    .canvas-actions button {
+        transition: none;
+    }
 }
